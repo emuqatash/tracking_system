@@ -1,0 +1,22 @@
+<?php
+
+namespace {{ namespace }};
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use App\Models\Scopes\AccountScope;
+
+class {{ class }} extends Model
+{
+    use HasFactory;
+
+    protected static function booted(): void
+    {
+        static::addGlobalScope(new AccountScope());
+        static::creating(function ($model) {
+            if(session()->has('account_id')) {
+                $model->account_id = session()->get('account_id');
+            }
+        });
+    }
+}
