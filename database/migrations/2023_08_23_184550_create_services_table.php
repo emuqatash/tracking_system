@@ -34,6 +34,7 @@ return new class extends Migration {
             $table->integer('followup_mileage')->nullable();
             $table->date('followup_date')->nullable();
             $table->string('remarks')->nullable();
+            $table->integer('active_alert')->default(1)->nullable();
             $table->unsignedBigInteger('account_id')->nullable();
             $table->timestamps();
         });

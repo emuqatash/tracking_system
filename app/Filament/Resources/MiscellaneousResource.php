@@ -6,9 +6,11 @@ use App\Filament\Resources\MiscellaneousResource\Pages;
 use App\Models\Miscellaneous;
 use App\Models\MiscellaneousCategory;
 use Filament\Forms;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -90,8 +92,13 @@ class MiscellaneousResource extends Resource
                             ->integer()
                             ->default(0),
                         Forms\Components\TextInput::make('purchased_from')
-                            ->label('Purchased from\Link')
-                            ->columnSpanFull(),
+                            ->label('Purchased from\Link'),
+                        Toggle::make('active_alert')
+                            ->label('Activate Alert')
+                            ->inline(false)
+                            ->onColor('success')
+                            ->offColor('gray')
+                            ->default('gray'),
                         Forms\Components\TextInput::make('cost')
                             ->default(0.00),
                         Forms\Components\FileUpload::make('file')
@@ -111,7 +118,7 @@ class MiscellaneousResource extends Resource
         return $table
             ->defaultSort('followup_date')
             ->columns([
-                Tables\Columns\TextColumn::make('subject')->searchable()->toggleable()->sortable(),
+                Tables\Columns\TextColumn::make('subject')->searchable()->toggleable()->sortable()->wrap(),
                 Tables\Columns\TextColumn::make('miscellaneous_categories_id')->searchable()->toggleable()->sortable()
                     ->label('Category')
                     ->formatStateUsing(function ($state) {
@@ -122,6 +129,7 @@ class MiscellaneousResource extends Resource
                 Tables\Columns\TextColumn::make('followup_date')->toggleable()->sortable(),
                 Tables\Columns\TextColumn::make('followup_before_day')->label('Alert before(Day)')->toggleable()->sortable(),
                 Tables\Columns\TextColumn::make('cost')->toggleable()->sortable(),
+                IconColumn::make('active_alert')->label('Alert')->boolean(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),

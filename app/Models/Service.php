@@ -18,7 +18,7 @@ class Service extends Model
         'part_warranty_period', 'labor_warranty_period',
         'repair_date', 'total_cost', 'part_cost', 'labor_cost', 'file', 'file_original_filename',
         'image', 'image_original_filename', 'remarks',
-        'followup_mileage', 'followup_date',
+        'followup_mileage', 'followup_date', 'active_alert'
     ];
 
     protected $casts = [

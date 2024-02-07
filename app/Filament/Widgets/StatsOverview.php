@@ -23,6 +23,7 @@ class StatsOverview extends BaseWidget
             Stat::make('Vehicle Service Due',
                 Service::whereColumn('current_mileage', '>=', 'followup_mileage')
                     ->orWhere('followup_date', '<=', now())
+                    ->where('active_alert', 1)
                     ->count())
                 ->color('danger')
                 ->descriptionIcon('heroicon-o-wrench-screwdriver')
@@ -30,6 +31,7 @@ class StatsOverview extends BaseWidget
 
             Stat::make('Expired Car Registration',
                 Vehicle::whereRaw('registration_date <= (CURRENT_DATE + INTERVAL remind_before DAY)')
+                    ->where('active_alert', 1)
                     ->count())
                 ->color('danger')
                 ->description('Total Car licenses overdue for renewal')
@@ -41,6 +43,7 @@ class StatsOverview extends BaseWidget
 
             Stat::make('Expired Driving License',
                 DrivingLicense::whereRaw('expiry_date <= (CURRENT_DATE + INTERVAL remind_before DAY)')
+                    ->where('active_alert', 1)
                     ->count())
                 ->color('danger')
                 ->descriptionIcon('heroicon-o-clipboard-document')
@@ -48,6 +51,7 @@ class StatsOverview extends BaseWidget
 
             Stat::make('Miscellaneous',
                 Miscellaneous::whereRaw('followup_date <= (CURRENT_DATE + INTERVAL followup_before_day DAY)')
+                    ->where('active_alert', 1)
                     ->count())
                 ->color('danger')
                 ->descriptionIcon('heroicon-o-briefcase')

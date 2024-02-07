@@ -5,12 +5,14 @@ namespace App\Filament\Resources\VehicleResource\RelationManagers;
 use App\Models\Part;
 use App\Models\Shop;
 use Filament\Forms;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Notifications\Notification;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Support\View\Components\Modal;
 use Filament\Tables;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -84,6 +86,7 @@ class ServicesRelationManager extends RelationManager
                 Tables\Columns\TextColumn::make('part_cost')->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('labor_cost')->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('total_cost')->sortable(),
+                IconColumn::make('active_alert')->label('Alert')->boolean(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
@@ -132,6 +135,11 @@ class ServicesRelationManager extends RelationManager
 
         return $form
             ->schema([
+                Toggle::make('active_alert')
+                    ->label('Activate Alert')
+                    ->onColor('success')
+                    ->offColor('gray')
+                    ->default('gray'),
                 Forms\Components\Tabs::make('Main')
                     ->tabs([
                         Forms\Components\Tabs\Tab::make('Service Details')

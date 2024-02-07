@@ -7,9 +7,11 @@ use App\Filament\Resources\VehicleResource\RelationManagers\ServicesRelationMana
 use App\Models\Service;
 use App\Models\Vehicle;
 use Filament\Forms;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -112,8 +114,13 @@ class VehicleResource extends Resource
                             ->label('Email Address')
                             ->required()
                             ->email()
-                            ->unique(ignoreRecord: true)
-                            ->columnSpanFull(),
+                            ->unique(ignoreRecord: true),
+                        Toggle::make('active_alert')
+                            ->label('Activate Alert')
+                            ->inline(false)
+                            ->onColor('success')
+                            ->offColor('gray')
+                            ->default('gray'),
                         Forms\Components\Section::make('Vehicle Note')
                             ->schema([
                                 Forms\Components\MarkdownEditor::make('remarks')->columnSpanFull()
@@ -151,6 +158,7 @@ class VehicleResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('vehicle_owner')->label('Owner')->searchable()->toggleable()->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                IconColumn::make('active_alert')->label('Alert')->boolean()
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),

@@ -14,7 +14,7 @@ class DrivingLicense extends Model
 
     protected $fillable = [
         'full_name', 'dl_number', 'expiry_date', 'remind_before', 'remarks',
-        'attachments', 'attachment_file_names', 'country'
+        'attachments', 'attachment_file_names', 'country', 'active_alert'
     ];
 
     protected $casts = [
