@@ -15,10 +15,12 @@ use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -141,7 +143,7 @@ class ServiceResource extends Resource
                 Tables\Columns\TextColumn::make('part_cost')->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('labor_cost')->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('total_cost')->sortable(),
-
+                IconColumn::make('active_alert')->label('Alert')->boolean(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
@@ -199,6 +201,11 @@ class ServiceResource extends Resource
                     ->tabs([
                         Tabs\Tab::make('Service Details')
                             ->schema([
+                                Toggle::make('active_alert')
+                                    ->label('Activate Alert')
+                                    ->onColor('success')
+                                    ->offColor('gray')
+                                    ->default('gray'),
                                 Select::make('part_id')
                                     ->relationship(
                                         name: 'part',

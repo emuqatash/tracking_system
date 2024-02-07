@@ -17,7 +17,9 @@ class ExpiredCarRegistration extends BaseWidget
 
     protected function getTableQuery(): Builder
     {
-        return Vehicle::query()->whereRaw('registration_date <= (CURRENT_DATE + INTERVAL remind_before DAY)');
+        return Vehicle::query()
+            ->whereRaw('registration_date <= (CURRENT_DATE + INTERVAL remind_before DAY)')
+            ->where('active_alert', 1);
     }
 
     protected function getTableColumns(): array

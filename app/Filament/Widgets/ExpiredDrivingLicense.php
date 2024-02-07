@@ -17,7 +17,9 @@ class ExpiredDrivingLicense extends BaseWidget
 
     protected function getTableQuery(): Builder
     {
-        return DrivingLicense::query()->where('expiry_date', '<=', now()->addDays(90));
+        return DrivingLicense::query()
+            ->where('expiry_date', '<=', now()->addDays(90))
+            ->where('active_alert', 1);
     }
 
     protected function getTableColumns(): array

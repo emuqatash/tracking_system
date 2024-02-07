@@ -7,9 +7,11 @@ use App\Filament\Resources\DrivingLicenseResource\RelationManagers;
 use App\Models\Country;
 use App\Models\DrivingLicense;
 use Filament\Forms;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -72,6 +74,12 @@ class DrivingLicenseResource extends Resource
                     ->preload()
                     ->default('United States')
                     ->options(Country::pluck('name', 'name')),
+                Toggle::make('active_alert')
+                    ->label('Activate Alert')
+                    ->inline(false)
+                    ->onColor('success')
+                    ->offColor('gray')
+                    ->default('gray'),
                 Forms\Components\MarkdownEditor::make('remarks')
                     ->columnSpanFull(),
 
@@ -105,6 +113,7 @@ class DrivingLicenseResource extends Resource
                     ->toggleable(), //isToggledHiddenByDefault: true
                 Tables\Columns\TextColumn::make('remarks')->searchable()->sortable()
                     ->toggleable(isToggledHiddenByDefault: true), //isToggledHiddenByDefault: true
+                IconColumn::make('active_alert')->label('Alert')->boolean(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),

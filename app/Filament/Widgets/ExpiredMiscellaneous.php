@@ -17,7 +17,9 @@ class ExpiredMiscellaneous extends BaseWidget
 
     protected function getTableQuery(): Builder
     {
-        return Miscellaneous::query()->with(['miscellaneousCategory'])->whereRaw('followup_date <= (CURRENT_DATE + INTERVAL followup_before_day DAY)');
+        return Miscellaneous::query()->with(['miscellaneousCategory'])
+            ->where('active_alert', 1)
+            ->whereRaw('followup_date <= (CURRENT_DATE + INTERVAL followup_before_day DAY)');
     }
 
     protected function getTableColumns(): array

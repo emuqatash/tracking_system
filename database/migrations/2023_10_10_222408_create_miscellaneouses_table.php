@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->decimal('cost')->nullable();
             $table->string('file')->nullable();
             $table->string('file_original_filename')->nullable();
+            $table->integer('active_alert')->default(1)->nullable();
             $table->softDeletes();
             $table->unsignedBigInteger('account_id')->nullable();
             $table->timestamps();
