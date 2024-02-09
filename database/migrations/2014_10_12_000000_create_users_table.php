@@ -19,6 +19,8 @@ return new class extends Migration {
             $table->rememberToken();
             $table->timestamps();
             $table->unsignedBigInteger('account_id')->nullable();
+            // Add soft delete column
+            $table->softDeletes();
         });
     }
 

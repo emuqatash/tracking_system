@@ -19,7 +19,9 @@ class UserSeeder extends Seeder
             'password' => Hash::make('password'), // replace 'password' with your desired password
             'account_id' => 1,
             'email_verified_at' => now(),
-            // possibly create and assign more info here...
+            'created_at' => now(),
+            'updated_at' => now(),
+            'deleted_at' => null, // set this to a specific timestamp if the row should be treated as 'deleted'
         ])->assignRole('Admin');
     }
 }
