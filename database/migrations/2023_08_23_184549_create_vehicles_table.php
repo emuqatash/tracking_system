@@ -25,6 +25,7 @@ return new class extends Migration {
             $table->string('remarks')->nullable();
             $table->integer('active_alert')->default(1)->nullable();
             $table->unsignedBigInteger('account_id')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
