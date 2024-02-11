@@ -22,6 +22,7 @@ class DrivingLicenseResource extends Resource
 {
     protected static ?string $model = DrivingLicense::class;
     protected static ?string $navigationGroup = "Vehicle Care";
+    protected static ?string $navigationLabel = "Driving License";
     protected static ?int $navigationSort = 7;
     protected static ?string $navigationIcon = 'heroicon-o-clipboard-document';
 
