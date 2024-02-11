@@ -69,7 +69,7 @@ class DrivingLicenseResource extends Resource
                     ->integer()
                     ->maxLength('4')
                     ->required(),
-                Forms\Components\select::make('country')
+                Forms\Components\Select::make('country')
                     ->required()
                     ->searchable()
                     ->preload()

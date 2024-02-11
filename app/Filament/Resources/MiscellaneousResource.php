@@ -71,7 +71,7 @@ class MiscellaneousResource extends Resource
                             ->required()
                             ->columnSpanFull(),
                         Forms\Components\MarkdownEditor::make('description')->columnSpanFull(),
-                        Forms\Components\select::make('miscellaneous_categories_id')
+                        Forms\Components\Select::make('miscellaneous_categories_id')
                             ->label('Category')
                             ->relationship('miscellaneousCategory', 'name')
                             ->createOptionForm([
