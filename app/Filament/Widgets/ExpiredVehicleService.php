@@ -17,8 +17,9 @@ class ExpiredVehicleService extends BaseWidget
     {
         return Service::with([
             'vehicle', 'part' => function ($query) {
-                $query->withoutGlobalScopes()
-                    ->where('active_alert', 1);
+                $query->withoutGlobalScopes();
+//                $query->withoutGlobalScopes()
+//                    ->where('active_alert', 1);
             }
         ])
             ->where('services.followup_date', '<=', now())

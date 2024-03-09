@@ -14,13 +14,13 @@ return new class extends Migration {
             $table->id();
             $table->string('full_name');
             $table->string('dl_number');
-            $table->string('country');
-            $table->date('expiry_date');
-            $table->integer('remind_before');
+            $table->string('country')->default('United States');
+            $table->date('expiry_date')->nullable();
+            $table->integer('remind_before')->default(30);
             $table->string('remarks')->nullable();
             $table->string('attachments')->nullable();
             $table->string('attachment_file_names')->nullable();
-            $table->integer('active_alert')->default(1)->nullable();
+            $table->integer('active_alert')->default(1);
             $table->unsignedBigInteger('account_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
