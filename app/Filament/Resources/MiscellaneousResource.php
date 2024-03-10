@@ -108,6 +108,8 @@ class MiscellaneousResource extends Resource
                             ->storeFileNamesIn('miscellaneous_original_filename')
                             ->preserveFilenames()
                             ->reorderable()
+                            ->appendFiles()
+                            ->downloadable()
                             ->openable(),
                     ])->columns(2),
             ]);
