@@ -102,7 +102,7 @@ class MiscellaneousResource extends Resource
                         Forms\Components\TextInput::make('cost')
                             ->default(0.00),
                         Forms\Components\FileUpload::make('file')
-                            ->label('File\Image')
+                            ->label('File or Image')
                             ->multiple()
                             ->directory('miscellaneous-attachments')
                             ->storeFileNamesIn('file_original_filename')
