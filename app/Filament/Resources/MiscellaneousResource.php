@@ -105,7 +105,7 @@ class MiscellaneousResource extends Resource
                             ->label('File\Image')
                             ->multiple()
                             ->directory('miscellaneous-attachments')
-                            ->storeFileNamesIn('miscellaneous_original_filename')
+                            ->storeFileNamesIn('file_original_filename')
                             ->preserveFilenames()
                             ->reorderable()
                             ->appendFiles()
