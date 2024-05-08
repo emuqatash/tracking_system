@@ -16,7 +16,10 @@ class DatabaseSeeder extends Seeder
             RolesTableSeeder::class,
             PermissionsTableSeeder::class,
             UserSeeder::class,
-            // Other seeders go here
+            ShopsTableSeeder::class,
+            PartsTableSeeder::class,
+            DrivingLicensesTableSeeder::class,
+            MiscellaneousCategoriesTableSeeder::class,
         ]);
     }
 }
