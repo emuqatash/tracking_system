@@ -18,7 +18,6 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ShopsTableSeeder::class,
             PartsTableSeeder::class,
-            DrivingLicensesTableSeeder::class,
             MiscellaneousCategoriesTableSeeder::class,
         ]);
     }
