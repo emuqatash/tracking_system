@@ -113,8 +113,8 @@ class VehicleResource extends Resource
                         Forms\Components\TextInput::make('owner_email')
                             ->label('Email Address')
                             ->required()
-                            ->email()
-                            ->unique(ignoreRecord: true),
+                            ->email(),
+//                            ->unique(ignoreRecord: true),
                         Toggle::make('active_alert')
                             ->label('Activate Alert')
                             ->inline(false)
