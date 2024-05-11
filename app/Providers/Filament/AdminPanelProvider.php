@@ -2,7 +2,6 @@
 
 namespace App\Providers\Filament;
 
-use Filament\Forms\Components\FileUpload;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -12,7 +11,6 @@ use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -105,13 +103,14 @@ class AdminPanelProvider extends PanelProvider
 
     public function boot(): void
     {
-        if ($this->app->environment() !== 'local') {
-            ImageColumn::configureUsing(static function (ImageColumn $column) {
-                $column->disk('s3');
-            });
-            FileUpload::configureUsing(static function (FileUpload $component) {
-                $component->disk('s3');
-            });
-        }
+        //You enable it if i use AWS S3
+//        if ($this->app->environment() !== 'local') {
+//            ImageColumn::configureUsing(static function (ImageColumn $column) {
+//                $column->disk('s3');
+//            });
+//            FileUpload::configureUsing(static function (FileUpload $component) {
+//                $component->disk('s3');
+//            });
+//        }
     }
 }
