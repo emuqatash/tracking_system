@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('sub_category')->nullable();
             $table->date('followup_date')->nullable();
             $table->integer('followup_before_day')->nullable();
-            $table->string('purchased_from')->nullable();
+            $table->string('purchased_from', 500)->nullable();
             $table->decimal('cost')->nullable();
             $table->string('file')->nullable();
             $table->string('file_original_filename')->nullable();
