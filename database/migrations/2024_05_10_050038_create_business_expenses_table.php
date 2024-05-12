@@ -11,13 +11,12 @@ return new class extends Migration {
             $table->id();
             $table->string('subject')->unique();
             $table->string('description')->nullable();
-            $table->integer('business_expenses_categories_id');
+            $table->integer('business_expense_categories_id');
+            $table->integer('business_companies_id');
             $table->string('sub_category')->nullable();
-            $table->string('company_name');
-            $table->date('expense_date')->nullable();
+            $table->date('expense_date');
             $table->decimal('amount', 8, 2);
-            $table->string('notes')->nullable();
-            $table->string('country')->default('United States');
+            $table->string('country')->default('United States')->nullable();
             $table->string('file')->nullable();
             $table->string('file_original_filename')->nullable();
             $table->unsignedBigInteger('account_id')->nullable();

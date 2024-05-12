@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\BusinessExpenseCategoryResource\Pages;
-use App\Filament\Resources\BusinessExpenseCategoryResource\RelationManagers;
-use App\Models\BusinessExpenseCategory;
+use App\Filament\Resources\BusinessCompanyResource\Pages;
+use App\Filament\Resources\BusinessCompanyResource\RelationManagers;
+use App\Models\BusinessCompany;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -14,14 +14,14 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 
-class BusinessExpenseCategoryResource extends Resource
+class BusinessCompanyResource extends Resource
 {
-    protected static ?string $model = BusinessExpenseCategory::class;
+    protected static ?string $model = BusinessCompany::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-building-office';
 
     protected static ?string $navigationGroup = "Business Expenses";
-    protected static ?string $navigationLabel = "Category";
+    protected static ?string $navigationLabel = "Company";
     protected static ?int $navigationSort = 8;
 
     public static function getNavigationBadge(): ?string
@@ -84,7 +84,7 @@ class BusinessExpenseCategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListBusinessExpenseCategories::route('/'),
+            'index' => Pages\ListBusinessCompanies::route('/'),
         ];
     }
 

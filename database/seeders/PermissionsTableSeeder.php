@@ -30,7 +30,16 @@ class PermissionsTableSeeder extends Seeder
             ['id' => 18, 'name' => 'Delete Category', 'guard_name' => 'web', 'created_at' => '2023-10-11 19:19:02', 'updated_at' => '2023-10-11 19:19:02', 'account_id' => 1],
             ['id' => 19, 'name' => 'Edit Service', 'guard_name' => 'web', 'created_at' => '2023-11-07 23:05:51', 'updated_at' => '2023-11-07 23:05:51', 'account_id' => 1],
             ['id' => 20, 'name' => 'Create Service', 'guard_name' => 'web', 'created_at' => '2023-11-07 23:22:01', 'updated_at' => '2023-11-07 23:22:01', 'account_id' => 1],
-            ['id' => 21, 'name' => 'Delete Service', 'guard_name' => 'web', 'created_at' => '2023-11-07 23:23:12', 'updated_at' => '2023-11-07 23:23:12', 'account_id' => 1]
+            ['id' => 21, 'name' => 'Delete Service', 'guard_name' => 'web', 'created_at' => '2023-11-07 23:23:12', 'updated_at' => '2023-11-07 23:23:12', 'account_id' => 1],
+            ['id' => 22, 'name' => 'Create BusinessExpense', 'guard_name' => 'web', 'created_at' => '2023-11-07 23:23:12', 'updated_at' => '2023-11-07 23:23:12', 'account_id' => 1],
+            ['id' => 23, 'name' => 'Edit BusinessExpense', 'guard_name' => 'web', 'created_at' => '2023-11-07 23:23:12', 'updated_at' => '2023-11-07 23:23:12', 'account_id' => 1],
+            ['id' => 24, 'name' => 'Delete BusinessExpense', 'guard_name' => 'web', 'created_at' => '2023-11-07 23:23:12', 'updated_at' => '2023-11-07 23:23:12', 'account_id' => 1],
+            ['id' => 25, 'name' => 'Create BusinessExpense Category', 'guard_name' => 'web', 'created_at' => '2023-11-07 23:23:12', 'updated_at' => '2023-11-07 23:23:12', 'account_id' => 1],
+            ['id' => 26, 'name' => 'Edit BusinessExpense Category', 'guard_name' => 'web', 'created_at' => '2023-11-07 23:23:12', 'updated_at' => '2023-11-07 23:23:12', 'account_id' => 1],
+            ['id' => 27, 'name' => 'Delete BusinessExpense Category', 'guard_name' => 'web', 'created_at' => '2023-11-07 23:23:12', 'updated_at' => '2023-11-07 23:23:12', 'account_id' => 1],
+            ['id' => 28, 'name' => 'Create BusinessCompany', 'guard_name' => 'web', 'created_at' => '2023-11-07 23:23:12', 'updated_at' => '2023-11-07 23:23:12', 'account_id' => 1],
+            ['id' => 29, 'name' => 'Edit BusinessCompany', 'guard_name' => 'web', 'created_at' => '2023-11-07 23:23:12', 'updated_at' => '2023-11-07 23:23:12', 'account_id' => 1],
+            ['id' => 30, 'name' => 'Delete BusinessCompany', 'guard_name' => 'web', 'created_at' => '2023-11-07 23:23:12', 'updated_at' => '2023-11-07 23:23:12', 'account_id' => 1],
         ];
 
         DB::table('permissions')->insert($permissions);
