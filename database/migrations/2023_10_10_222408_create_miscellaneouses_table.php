@@ -10,7 +10,7 @@ return new class extends Migration {
         Schema::create('miscellaneouses', function (Blueprint $table) {
             $table->id();
             $table->string('subject')->unique();
-            $table->string('description')->nullable();
+            $table->string('description', 500)->nullable();
             $table->integer('miscellaneous_categories_id');
             $table->string('sub_category')->nullable();
             $table->date('followup_date')->nullable();
