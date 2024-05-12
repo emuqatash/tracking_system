@@ -43,7 +43,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('dashboard')
             ->path('dashboard')
             ->login()
-            ->registration()
+//            ->registration()  //enable it if you want user to create or register new login
             ->passwordReset()
             ->emailVerification()
             ->profile()

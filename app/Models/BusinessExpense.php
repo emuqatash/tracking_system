@@ -14,12 +14,11 @@ class BusinessExpense extends Model
     protected $fillable = [
         'subject',
         'description',
-        'business_expenses_categories_id',
+        'business_expense_categories_id',
+        'business_companies_id',
         'sub_category',
-        'company_name',
         'expense_date',
         'amount',
-        'notes',
         'country',
         'file',
         'file_original_filename',
@@ -44,5 +43,10 @@ class BusinessExpense extends Model
     public function businessExpenseCategory(): BelongsTo
     {
         return $this->belongsTo(BusinessExpenseCategory::class, 'business_expense_categories_id', 'id');
+    }
+
+    public function businessCompany(): BelongsTo
+    {
+        return $this->belongsTo(BusinessCompany::class, 'business_companies_id', 'id');
     }
 }

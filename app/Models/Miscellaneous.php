@@ -14,8 +14,17 @@ class Miscellaneous extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'subject', 'description', 'miscellaneous_categories_id', 'sub_category', 'followup_date', 'followup_before_day',
-        'purchased_from', 'cost', 'file', 'file_original_filename', 'active_alert'
+        'subject',
+        'description',
+        'miscellaneous_categories_id',
+        'sub_category',
+        'followup_date',
+        'followup_before_day',
+        'purchased_from',
+        'cost',
+        'file',
+        'file_original_filename',
+        'active_alert'
     ];
 
     protected $casts = [

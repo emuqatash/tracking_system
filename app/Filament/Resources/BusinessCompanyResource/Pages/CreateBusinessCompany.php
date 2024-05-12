@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Filament\Resources\BusinessExpenseResource\Pages;
+namespace App\Filament\Resources\BusinessCompanyResource\Pages;
 
-use App\Filament\Resources\BusinessExpenseResource;
+use App\Filament\Resources\BusinessCompanyResource;
 use Filament\Resources\Pages\CreateRecord;
 
-class CreateBusinessExpense extends CreateRecord
+class CreateBusinessCompany extends CreateRecord
 {
-    protected static string $resource = BusinessExpenseResource::class;
+    protected static string $resource = BusinessCompanyResource::class;
 
     protected function getRedirectUrl(): string
     {

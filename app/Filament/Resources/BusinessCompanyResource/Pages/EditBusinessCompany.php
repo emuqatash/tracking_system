@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\BusinessExpenseCategoryResource\Pages;
+namespace App\Filament\Resources\BusinessCompanyResource\Pages;
 
-use App\Filament\Resources\BusinessExpenseCategoryResource;
+use App\Filament\Resources\BusinessCompanyResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditBusinessExpenseCategory extends EditRecord
+class EditBusinessCompany extends EditRecord
 {
-    protected static string $resource = BusinessExpenseCategoryResource::class;
+    protected static string $resource = BusinessCompanyResource::class;
 
     protected function getHeaderActions(): array
     {

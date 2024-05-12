@@ -30,8 +30,6 @@ class MiscellaneousResource extends Resource
     protected static int $globalSearchResutsLimit = 20;
 
     //****** Global Search*********/
-
-
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();
@@ -58,7 +56,6 @@ class MiscellaneousResource extends Resource
     }
 
     //****** Global Search*********/
-
     public static function form(Form $form): Form
     {
         return $form
