@@ -115,6 +115,8 @@ class DrivingLicenseResource extends Resource
                 Tables\Columns\TextColumn::make('remarks')->searchable()->sortable()
                     ->toggleable(isToggledHiddenByDefault: true), //isToggledHiddenByDefault: true
                 IconColumn::make('active_alert')->label('Alert')->boolean(),
+                IconColumn::make('attachments')
+                    ->label('file')->boolean()->trueIcon('heroicon-o-document-text')->wrap(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),

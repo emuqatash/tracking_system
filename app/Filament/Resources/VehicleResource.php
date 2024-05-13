@@ -170,8 +170,7 @@ class VehicleResource extends Resource
                 Tables\Columns\TextColumn::make('vehicle_owner')->label('Owner')->searchable()->toggleable()->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 IconColumn::make('active_alert')->label('Alert')->boolean(),
-                IconColumn::make('file')
-                    ->label('Attachments')->boolean()->trueIcon('heroicon-o-document-text')->wrap(),
+                IconColumn::make('file')->boolean()->trueIcon('heroicon-o-document-text')->wrap(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
