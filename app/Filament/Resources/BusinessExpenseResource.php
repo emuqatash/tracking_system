@@ -2,15 +2,22 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\BusinessExpenseExporter;
 use App\Filament\Resources\BusinessExpenseResource\Pages;
 use App\Models\BusinessCompany;
 use App\Models\BusinessExpense;
 use App\Models\BusinessExpenseCategory;
 use App\Models\Country;
 use Filament\Forms;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\ExportAction;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\Summarizers\Sum;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -62,6 +69,75 @@ class BusinessExpenseResource extends Resource
 
     //****** Global Search*********/
 
+    public static function table(Table $table): Table
+    {
+        return $table
+            ->headerActions([
+                // you need run: php artisan make:filament-exporter BusinessExpense --generate
+                ExportAction::make()
+                    ->exporter(BusinessExpenseExporter::class)
+            ])
+            ->defaultSort('expense_date')
+            ->columns([
+                Tables\Columns\TextColumn::make('subject')->searchable()->toggleable()->sortable()->wrap(),
+                Tables\Columns\TextColumn::make('business_companies_id')->searchable()->toggleable()->sortable()
+                    ->label('Company')
+                    ->formatStateUsing(function ($state) {
+                        $category = BusinessCompany::find($state);
+                        return $category->name;
+                    }),
+                Tables\Columns\TextColumn::make('business_expense_categories_id')->searchable()->toggleable()->sortable()
+                    ->label('Category')
+                    ->formatStateUsing(function ($state) {
+                        $category = BusinessExpenseCategory::find($state);
+                        return $category->name;
+                    }),
+                Tables\Columns\TextColumn::make('sub_category')->searchable()->toggleable()->sortable(),
+                Tables\Columns\TextColumn::make('expense_date')->toggleable()->sortable(),
+                Tables\Columns\TextColumn::make('amount')->toggleable()->sortable(),
+                TextColumn::make('amount')->summarize(Sum::make()),
+                IconColumn::make('file')
+                    ->label('Attachments')->boolean()->trueIcon('heroicon-o-document-text')->wrap(),
+
+            ])
+            ->filters([
+                Tables\Filters\TrashedFilter::make(),
+                Filter::make('expense_date')
+                    ->form([
+                        DatePicker::make('From'),
+                        DatePicker::make('To'),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['From'],
+                                fn(Builder $query, $date): Builder => $query->whereDate('expense_date', '>=', $date),
+                            )
+                            ->when(
+                                $data['To'],
+                                fn(Builder $query, $date): Builder => $query->whereDate('expense_date', '<=', $date),
+                            );
+                    })
+            ])
+            ->actions([
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\ViewAction::make(),
+                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\DeleteAction::make(),
+                    Tables\Actions\RestoreAction::make(),
+                ])
+            ])
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    ExportBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\RestoreBulkAction::make(),
+                ]),
+            ])
+            ->emptyStateActions([
+                Tables\Actions\CreateAction::make(),
+            ]);
+    }
 
     public static function form(Form $form): Form
     {
@@ -122,51 +198,6 @@ class BusinessExpenseResource extends Resource
                     ->downloadable()
                     ->columnSpanFull()
                     ->openable(),
-            ]);
-    }
-
-    public static function table(Table $table): Table
-    {
-        return $table
-            ->defaultSort('expense_date')
-            ->columns([
-                Tables\Columns\TextColumn::make('subject')->searchable()->toggleable()->sortable()->wrap(),
-                Tables\Columns\TextColumn::make('business_companies_id')->searchable()->toggleable()->sortable()
-                    ->label('Company')
-                    ->formatStateUsing(function ($state) {
-                        $category = BusinessCompany::find($state);
-                        return $category->name;
-                    }),
-                Tables\Columns\TextColumn::make('business_expense_categories_id')->searchable()->toggleable()->sortable()
-                    ->label('Category')
-                    ->formatStateUsing(function ($state) {
-                        $category = BusinessExpenseCategory::find($state);
-                        return $category->name;
-                    }),
-                Tables\Columns\TextColumn::make('sub_category')->searchable()->toggleable()->sortable(),
-                Tables\Columns\TextColumn::make('expense_date')->toggleable()->sortable(),
-                Tables\Columns\TextColumn::make('amount')->toggleable()->sortable(),
-            ])
-            ->filters([
-                Tables\Filters\TrashedFilter::make(),
-            ])
-            ->actions([
-                Tables\Actions\ActionGroup::make([
-                    Tables\Actions\ViewAction::make(),
-                    Tables\Actions\EditAction::make(),
-                    Tables\Actions\DeleteAction::make(),
-                    Tables\Actions\RestoreAction::make(),
-                ])
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    ExportBulkAction::make(),
-                    Tables\Actions\DeleteBulkAction::make(),
-                    Tables\Actions\RestoreBulkAction::make(),
-                ]),
-            ])
-            ->emptyStateActions([
-                Tables\Actions\CreateAction::make(),
             ]);
     }
 

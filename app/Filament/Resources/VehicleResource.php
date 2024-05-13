@@ -121,6 +121,17 @@ class VehicleResource extends Resource
                             ->onColor('success')
                             ->offColor('gray')
                             ->default('gray'),
+                        Forms\Components\FileUpload::make('file')
+                            ->label('File or Image')
+                            ->multiple()
+                            ->directory('Vehicle-attachments')
+                            ->storeFileNamesIn('file_original_filename')
+                            ->preserveFilenames()
+                            ->reorderable()
+                            ->appendFiles()
+                            ->downloadable()
+                            ->columnSpanFull()
+                            ->openable(),
                         Forms\Components\Section::make('Vehicle Note')
                             ->schema([
                                 Forms\Components\MarkdownEditor::make('remarks')->columnSpanFull()
@@ -158,7 +169,9 @@ class VehicleResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('vehicle_owner')->label('Owner')->searchable()->toggleable()->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                IconColumn::make('active_alert')->label('Alert')->boolean()
+                IconColumn::make('active_alert')->label('Alert')->boolean(),
+                IconColumn::make('file')
+                    ->label('Attachments')->boolean()->trueIcon('heroicon-o-document-text')->wrap(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
