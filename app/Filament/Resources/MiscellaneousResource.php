@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\MiscellaneousExporter;
 use App\Filament\Resources\MiscellaneousResource\Pages;
 use App\Models\Miscellaneous;
 use App\Models\MiscellaneousCategory;
@@ -10,6 +11,7 @@ use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -115,6 +117,11 @@ class MiscellaneousResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->headerActions([
+                //you must run: php artisan make:filament-exporter Miscellaneous --generate
+                ExportAction::make()
+                    ->exporter(MiscellaneousExporter::class)
+            ])
             ->defaultSort('followup_date')
             ->columns([
                 Tables\Columns\TextColumn::make('subject')->searchable()->toggleable()->sortable()->wrap(),
