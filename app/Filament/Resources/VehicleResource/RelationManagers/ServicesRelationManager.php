@@ -87,6 +87,7 @@ class ServicesRelationManager extends RelationManager
                 Tables\Columns\TextColumn::make('labor_cost')->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('total_cost')->sortable(),
                 IconColumn::make('active_alert')->label('Alert')->boolean(),
+                IconColumn::make('file')->boolean()->trueIcon('heroicon-o-document-text')->wrap(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),

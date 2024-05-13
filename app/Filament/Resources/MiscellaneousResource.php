@@ -136,6 +136,7 @@ class MiscellaneousResource extends Resource
                 Tables\Columns\TextColumn::make('followup_before_day')->label('Alert before(Day)')->toggleable()->sortable(),
                 Tables\Columns\TextColumn::make('cost')->toggleable()->sortable(),
                 IconColumn::make('active_alert')->label('Alert')->boolean(),
+                IconColumn::make('file')->boolean()->trueIcon('heroicon-o-document-text')->wrap(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),

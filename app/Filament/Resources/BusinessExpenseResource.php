@@ -96,9 +96,7 @@ class BusinessExpenseResource extends Resource
                 Tables\Columns\TextColumn::make('expense_date')->toggleable()->sortable(),
                 Tables\Columns\TextColumn::make('amount')->toggleable()->sortable(),
                 TextColumn::make('amount')->summarize(Sum::make()),
-                IconColumn::make('file')
-                    ->label('Attachments')->boolean()->trueIcon('heroicon-o-document-text')->wrap(),
-
+                IconColumn::make('file')->boolean()->trueIcon('heroicon-o-document-text')->wrap(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
