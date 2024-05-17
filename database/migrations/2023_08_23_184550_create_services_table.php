@@ -33,7 +33,7 @@ return new class extends Migration {
             $table->string('image_original_filename')->nullable();
             $table->integer('followup_mileage')->nullable();
             $table->date('followup_date')->nullable();
-            $table->string('remarks')->nullable();
+            $table->string('remarks', 1000)->nullable();
             $table->integer('active_alert')->default(1)->nullable();
             $table->unsignedBigInteger('account_id')->nullable();
             $table->softDeletes();
