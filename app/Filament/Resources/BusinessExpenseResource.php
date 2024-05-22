@@ -11,6 +11,7 @@ use App\Models\Country;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Actions\ExportAction;
@@ -123,6 +124,13 @@ class BusinessExpenseResource extends Resource
                     Tables\Actions\EditAction::make(),
                     Tables\Actions\DeleteAction::make(),
                     Tables\Actions\RestoreAction::make(),
+                    Tables\Actions\ReplicateAction::make()
+                        ->successNotification(
+                            Notification::make()
+                                ->success()
+                                ->title('Record replicated')
+                                ->body('The record has been replicated successfully.'),
+                        )
                 ])
             ])
             ->bulkActions([

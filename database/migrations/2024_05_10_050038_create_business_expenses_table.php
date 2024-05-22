@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('business_expenses', function (Blueprint $table) {
             $table->id();
-            $table->string('subject')->unique();
+            $table->string('subject');
             $table->string('description')->nullable();
             $table->integer('business_expense_categories_id');
             $table->integer('business_companies_id');
