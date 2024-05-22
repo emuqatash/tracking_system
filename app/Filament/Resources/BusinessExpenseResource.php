@@ -125,6 +125,9 @@ class BusinessExpenseResource extends Resource
                     Tables\Actions\DeleteAction::make(),
                     Tables\Actions\RestoreAction::make(),
                     Tables\Actions\ReplicateAction::make()
+                        ->beforeReplicaSaved(function (BusinessExpense $replica): void {
+                            $replica->subject = '[New] ' . $replica->subject;
+                        })
                         ->successNotification(
                             Notification::make()
                                 ->success()
